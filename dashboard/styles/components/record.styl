@@ -1,0 +1,28 @@
+.record
+  display block
+  margin 0
+  padding 0.875em 1em
+  background #fff
+  border-bottom solid 1px #c3c3c3
+  color inherit
+  text-decoration none
+  cursor pointer
+
+  &__name,
+  &__meta
+    width 100%
+    overflow hidden
+    white-space nowrap
+    text-overflow ellipsis
+
+  &__name
+    color $primary-color
+
+  &__meta
+    font-size 0.75em
+
+  &__status
+    padding-right 1em
+
+  &__method
+    padding-right 0.5em

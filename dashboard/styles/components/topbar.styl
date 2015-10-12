@@ -1,0 +1,34 @@
+.topbar
+  margin 0
+  padding 0.5em 0
+  width 100%
+  height 3.5em
+  line-height unit(@height - 1, '')
+  background $primary-color
+  color #fff
+  text-align center
+
+  a
+    display inline-block
+    margin 0
+    padding 0 1em
+    cursor pointer
+    color inherit
+    transition all 250ms ease
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+    border-radius 3px
+
+    & + a
+      margin-left 0.5em
+
+    &:hover
+      background lighten($primary-color, 15%)
+
+    &.is-active
+      background $background-color
+      color $primary-color
+
+  &__logo
+    float left

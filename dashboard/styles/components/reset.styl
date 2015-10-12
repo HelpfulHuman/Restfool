@@ -1,0 +1,83 @@
+*,
+*:before,
+*:after
+ box-sizing inherit
+
+html, body, body div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img,
+ins, kbd, q, samp, small, strong, sub, sup, var,
+b, i, dl, dt, dd, ol, ul, li, fieldset, form,
+label, legend, table, caption, tbody, tfoot, thead,
+tr, th, td, article, aside, figure, footer, header,
+menu, nav, section, time, mark, audio, video,
+details, summary
+  margin 0
+  padding 0
+  border 0
+  outline 0
+  font-weight inherit
+  font-style inherit
+  font-family inherit
+  font-size 100%
+  vertical-align baseline
+
+article, aside, figure, footer, header, nav,
+section, details, summary
+  display block
+
+input, select
+  vertical-align middle
+
+input[type="radio"]
+  vertical-align text-bottom
+
+input[type="checkbox"]
+  vertical-align bottom
+
+input, select, textarea
+  color inherit
+
+select, input, textarea, button
+  font-weight inherit
+  font-style inherit
+  font-family inherit
+  font-size 100%
+  vertical-align baseline
+  appearance none
+  outline 0
+
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+button
+  cursor pointer
+  user-select none
+
+/* make buttons play nice in IE */
+button,
+input[type=button]
+  width auto
+  overflow visible
+
+img,
+object,
+embed
+  max-width 100%
+
+
+html,
+body
+  min-height 100%
+  height 100%
+
+/* Handle box-sizing while better addressing child elements:
+http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html
+  box-sizing border-box
+  overflow-y scroll
+
+nav
+  ol, ul
+    list-style none

@@ -1,0 +1,58 @@
+doctype html
+html(lang="en")
+  head
+    title RESTfool Dashboard
+    link(href='/dashboard.css', rel='stylesheet')
+  body
+    main#app
+      aside(class='sidebar')
+        header(class='topbar')
+          a(href='/clear', class='topbar__clear') clear
+        nav(class='sidebar__records')
+          div(class='sidebar__records-scroll')
+            for record in records
+              a(href='/' + record.id, class='record')
+                div(class='record__name')
+                  span(class='record__status')= record.response.statusCode
+                  span(class='record__method')= record.method
+                  span(class='record__path')= record.path
+                div(class='record__meta')
+                  date(timestamp=record.started_at.format())
+                    = record.started_at.fromNow()
+      article(class='details')
+        if selected
+          div(class='details__container')
+            h1(class='details__title')
+              span(class='details__title-status')= selected.response.statusCode
+              span(class='details__title-method')= selected.method
+              span(class='details__title-path')= selected.path
+            section(class='card +headers')
+              header(class='card__title') Request Headers
+              section(class='card__table')
+                table
+                  tbody
+                    for headerVal, headerName in selected.request.headers
+                      tr
+                        td(style='min-width:260px;')= headerName
+                        td= headerVal
+            if Object.keys(selected.request.query).length
+              section(class='card +query')
+                header(class='card__title') Request Parameters
+                section(class='card__table')
+                  table
+                    tbody
+                      for queryVal, queryName in selected.request.query
+                        tr
+                          td(style='min-width:200px;')= queryName
+                          td= queryVal
+            if selected.request.body
+              section(class='card +req-body')
+                header(class='card__title') Request Body
+                section(class='card_body')
+                  pre= JSON.stringify(selected.request.body, null, 2)
+            if selected.response.body
+              section(class='card +req-body')
+                header(class='card__title') Response Body
+                section(class='card_body')
+                  pre= JSON.stringify(selected.response.body, null, 2)
+    script(src='/dashboard.js')

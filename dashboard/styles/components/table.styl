@@ -1,0 +1,36 @@
+table
+  display table
+  margin 0
+  padding 0
+  border-collapse collapse
+  border-spacing 0
+  border 0
+  color inherit
+  width 100%
+
+thead,
+tbody
+  min-width 100%
+
+tr
+  display table-row
+
+  &:nth-child(odd)
+    background rgba(0,0,0,0.025)
+
+th,
+td
+  padding 0.5em 1em
+  display table-cell
+  vertical-align top
+  overflow hidden
+  white-space nowrap
+  text-overflow ellipsis
+  text-align left
+
+th
+  font-weight bold
+
+// tbody
+//   td
+//     border-top solid 1px #ddd
