@@ -33,7 +33,7 @@ var restfool = require('restfool')
 
 ## Starting a server
 
-RESTfool requires an Express server to serve mocked routes and the dashboard.  You can choose to add the middleware yourself, or have RESTfool create a server and configure a server for you.
+RESTfool requires an Express server to serve mocked routes and the dashboard.  You can choose to add the middleware yourself, but it's recommended to have RESTfool create and configure a server for you.
 
 ```javascript
 var server = restfool.create()
