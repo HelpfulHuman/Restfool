@@ -87,7 +87,7 @@ var many = postFixture.make(3)
 // => [ {...}, {...}, {...} ]
 ```
 
-You can override the results of with custom values by passing an object or function in as a second argument.
+You can override the results of custom values by passing an object or function in as a second argument.
 
 ```javascript
 var active = userFixture.make(2, { active: true })
