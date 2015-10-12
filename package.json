@@ -1,11 +1,12 @@
 {
   "name": "restfool",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "description": "A framework for building fake endpoints that can be used to test REST calls.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "mocha",
-    "build": "babel src/index.js --out-file dist/index.js"
+    "build": "babel src --out-dir dist",
+    "prepublish": "npm test && rm -r dist && npm run build"
   },
   "keywords": [
     "rest",
@@ -36,5 +37,13 @@
     "shortid": "^2.2.2",
     "socket.io": "^1.3.7",
     "stylus": "^0.52.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HelpfulHuman/Restfool.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HelpfulHuman/Restfool/issues"
+  },
+  "homepage": "https://github.com/HelpfulHuman/Restfool"
 }
