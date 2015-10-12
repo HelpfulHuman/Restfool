@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import express from 'express'
+import cors from 'cors'
 import bodyParser from 'body-parser'
 import createDashboard from './middleware/dashboard'
 import capture from './middleware/capture'
@@ -43,6 +44,9 @@ export default {
     // standard middleware
     server.use(bodyParser.json())
     server.use(bodyParser.urlencoded({ extended: true }))
+
+    // allows the use of CORS for all routes
+    server.use(cors())
 
     // capture middleware to informat bridge of requests
     server.use(capture(bridge))
