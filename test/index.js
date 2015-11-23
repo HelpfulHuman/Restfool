@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import restfool from '../src/index';
+import * as restfool from '../src/index';
 
 describe('restfool', function () {
 
