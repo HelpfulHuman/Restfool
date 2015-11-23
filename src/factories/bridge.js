@@ -1,7 +1,7 @@
-import _ from 'lodash'
-import shortid from 'shortid'
-import events from 'events'
-import moment from 'moment'
+import _ from 'lodash';
+import shortid from 'shortid';
+import events from 'events';
+import moment from 'moment';
 
 /**
  * Creates and returns a new bridge object that can be used to
@@ -10,7 +10,7 @@ import moment from 'moment'
  * @param  {Object} options
  * @return {Object}
  */
-export default function (options) {
+export function factory (options) {
   var _records = []
   var _events  = new events.EventEmitter()
 
