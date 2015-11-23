@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/HelpfulHuman/Restfool.svg)](https://travis-ci.org/HelpfulHuman/Restfool)
+
 RESTfool is largely just a set of higher order functions that produce middleware for mocking responses with assertions and fixture data.  These middleware also report request and response information to a RESTfool Dashboard instance for debugging and analysis of each made call.
 
 ## Getting Started
