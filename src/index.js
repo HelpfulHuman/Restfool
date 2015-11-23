@@ -13,6 +13,7 @@ import createResource from './factories/resource'
 let defaultOptions = {
   notify: true
 }
+import {factory as createFixture} from './factories/fixture';
 
 export default {
 
