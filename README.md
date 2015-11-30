@@ -1,23 +1,8 @@
+[![Build Status](https://travis-ci.org/HelpfulHuman/Restfool.svg)](https://travis-ci.org/HelpfulHuman/Restfool)
+
 RESTfool is largely just a set of higher order functions that produce middleware for mocking responses with assertions and fixture data.  These middleware also report request and response information to a RESTfool Dashboard instance for debugging and analysis of each made call.
 
 ## Getting Started
-
-### CLI
-
-Install via npm:
-
-```
-npm install -g restfool
-```
-
-Run the `setup` command in the folder you want to create a project in:
-
-```
-mkdir restfool; cd restfool
-restfool setup
-```
-
-### Manual
 
 Install via npm:
 
@@ -113,20 +98,30 @@ server.get('/posts', postFixture.send(10, { published: true }))
 
 You know what's even cooler than sending completely dynamic fixture data?  Mocking data persistence complete with scaffolded routes!
 
-_Note: RESTfool simply stores any data in memory that will be lost once closing the server._
+_Note: RESTfool simply stores the data in memory.  This means that the data will be lost once the server is closed._
 
 ```javascript
 var uuid = require('uuid')
 
 var posts = restfool.resource({
   // define the endpoint/resource name
-  type: 'posts',
+  name: 'posts',
 
   // provide an initial set seed data
   seed: postFixture.make(10),
 
-  // define the primary key ("id" by default)
-  primaryKey: 'id',
+  // format the resource data on output
+  format: function (data) {
+    var req = this
+    var output = { data: data }
+
+    if (Array.isArray(data)) {
+      data.page = req.query.page || 1
+      data.results = data.length
+    }
+
+    return data;
+  }
 
   // run this function when a post is made
   onCreate: function (post) {

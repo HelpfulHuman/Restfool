@@ -1,5 +1,24 @@
-import _ from 'lodash'
-import utils from '../utils'
+import _ from 'lodash';
+
+/**
+ * Runs over an object and replaces any functional values
+ * with their results.
+ *
+ * @param  {Object} obj
+ * @return {Object}
+ */
+export function runNestedFunctions (obj) {
+  return _.mapValues(obj, function (val) {
+    switch (typeof val) {
+      case 'function':
+        return val();
+      case 'object':
+        return runNestedFunctions(val);
+      default:
+        return val;
+    }
+  });
+}
 
 /**
  * Processes a single row and returns the value.
@@ -8,12 +27,12 @@ import utils from '../utils'
  * @param  {Function} modifier
  * @return {Object}
  */
-function makeRow (schema, modifier) {
+export function makeRow (schema, modifier) {
   if (typeof modifier === 'function') {
-    return modifier(schema)
+    return modifier(schema);
   }
 
-  return _.merge(schema, modifier)
+  return _.merge(schema, modifier);
 }
 
 /**
@@ -22,13 +41,13 @@ function makeRow (schema, modifier) {
  * @param  {Object} schema
  * @return {Object}
  */
-export default function (schema) {
-  if (typeof schema === 'object') {
-    schema = utils.runNestedFunctions.bind(null, schema)
+export function factory (schema) {
+  if ( ! Array.isArray(schema) && typeof schema === 'object') {
+    schema = runNestedFunctions.bind(null, schema);
   }
 
   if (typeof schema !== 'function') {
-    throw new Error('You must pass either an object or a function!')
+    throw new Error('You must pass either an object or a function!');
   }
 
   return {
@@ -41,13 +60,13 @@ export default function (schema) {
      * @return {Array}
      */
     make (count, modifier) {
-      var _arr = []
+      let records = [];
       for (var i = 0; i < count; i++) {
-        var record = makeRow(schema(), modifier)
-        if (record) _arr.push(record)
+        var record = makeRow(schema(), modifier);
+        if (record) records.push(record);
       }
 
-      return _arr
+      return records;
     },
 
     /**
@@ -57,7 +76,7 @@ export default function (schema) {
      * @return {Object}
      */
     makeOne (modifier) {
-      return makeRow(schema(), modifier)
+      return makeRow(schema(), modifier);
     }
 
   }

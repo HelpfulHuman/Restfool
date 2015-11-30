@@ -1,12 +1,12 @@
 {
   "name": "restfool",
-  "version": "0.1.1-alpha",
+  "version": "0.1.1",
   "description": "A framework for building fake endpoints that can be used to test REST calls.",
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha",
     "build": "babel src --out-dir dist",
-    "prepublish": "npm test && rm -r dist && npm run build"
+    "prepublish": "rm -rf dist; npm test && npm run build"
   },
   "keywords": [
     "rest",
@@ -18,8 +18,9 @@
   "author": "Nick Glenn <nick@helpfulhuman.com>",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-core": "^5.8.25",
+    "babel-cli": "^6.2.0",
+    "babel-core": "^6.2.1",
+    "babel-preset-es2015": "^6.1.18",
     "chai": "^3.3.0",
     "faker": "^3.0.1",
     "mocha": "^2.3.3",
