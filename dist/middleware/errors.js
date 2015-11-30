@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports["default"] = function () {
+exports.default = function () {
   return function (err, req, res, next) {};
 };
-
-module.exports = exports["default"];

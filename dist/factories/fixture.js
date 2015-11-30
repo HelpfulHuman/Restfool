@@ -1,18 +1,39 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+exports.runNestedFunctions = runNestedFunctions;
+exports.makeRow = makeRow;
+exports.factory = factory;
 
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _utils = require('../utils');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _utils2 = _interopRequireDefault(_utils);
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+/**
+ * Runs over an object and replaces any functional values
+ * with their results.
+ *
+ * @param  {Object} obj
+ * @return {Object}
+ */
+function runNestedFunctions(obj) {
+  return _lodash2.default.mapValues(obj, function (val) {
+    switch (typeof val === 'undefined' ? 'undefined' : _typeof(val)) {
+      case 'function':
+        return val();
+      case 'object':
+        return runNestedFunctions(val);
+      default:
+        return val;
+    }
+  });
+}
 
 /**
  * Processes a single row and returns the value.
@@ -26,7 +47,7 @@ function makeRow(schema, modifier) {
     return modifier(schema);
   }
 
-  return _lodash2['default'].merge(schema, modifier);
+  return _lodash2.default.merge(schema, modifier);
 }
 
 /**
@@ -35,10 +56,9 @@ function makeRow(schema, modifier) {
  * @param  {Object} schema
  * @return {Object}
  */
-
-exports['default'] = function (schema) {
-  if (typeof schema === 'object') {
-    schema = _utils2['default'].runNestedFunctions.bind(null, schema);
+function factory(schema) {
+  if (!Array.isArray(schema) && (typeof schema === 'undefined' ? 'undefined' : _typeof(schema)) === 'object') {
+    schema = runNestedFunctions.bind(null, schema);
   }
 
   if (typeof schema !== 'function') {
@@ -54,14 +74,15 @@ exports['default'] = function (schema) {
      * @param  {Object} modifier
      * @return {Array}
      */
+
     make: function make(count, modifier) {
-      var _arr = [];
+      var records = [];
       for (var i = 0; i < count; i++) {
         var record = makeRow(schema(), modifier);
-        if (record) _arr.push(record);
+        if (record) records.push(record);
       }
 
-      return _arr;
+      return records;
     },
 
     /**
@@ -73,8 +94,5 @@ exports['default'] = function (schema) {
     makeOne: function makeOne(modifier) {
       return makeRow(schema(), modifier);
     }
-
   };
-};
-
-module.exports = exports['default'];
+}

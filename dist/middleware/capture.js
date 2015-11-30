@@ -1,17 +1,10 @@
-/**
- * Captures new request and response information and logs it to
- * the given bridge instance.
- *
- * @param  {Object} bridge
- * @return {Function}
- */
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports['default'] = function (bridge) {
+exports.default = function (bridge) {
   return function (req, res, next) {
     var chunks = [];
     var oldWrite = res.write;
@@ -45,5 +38,3 @@ exports['default'] = function (bridge) {
     next();
   };
 };
-
-module.exports = exports['default'];
