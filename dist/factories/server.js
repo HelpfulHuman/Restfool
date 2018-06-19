@@ -52,15 +52,13 @@ var defaultOptions = exports.defaultOptions = {
    */
   notify: true
 
-};
-
-/**
- * Creates a new RESTfool server.
- *
- * @param  {Object} options
- * @return {Express}
- */
-function factory(options) {
+  /**
+   * Creates a new RESTfool server.
+   *
+   * @param  {Object} options
+   * @return {Express}
+   */
+};function factory(options) {
 
   // we need to create 2 servers, one for the RESTfool and the other
   // for the UI

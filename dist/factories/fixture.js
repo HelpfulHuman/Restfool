@@ -3,6 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 exports.runNestedFunctions = runNestedFunctions;
 exports.makeRow = makeRow;
 exports.factory = factory;
@@ -12,8 +15,6 @@ var _lodash = require('lodash');
 var _lodash2 = _interopRequireDefault(_lodash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
 /**
  * Runs over an object and replaces any functional values
@@ -74,7 +75,6 @@ function factory(schema) {
      * @param  {Object} modifier
      * @return {Array}
      */
-
     make: function make(count, modifier) {
       var records = [];
       for (var i = 0; i < count; i++) {
@@ -84,6 +84,7 @@ function factory(schema) {
 
       return records;
     },
+
 
     /**
      * Returns a single fixture record.

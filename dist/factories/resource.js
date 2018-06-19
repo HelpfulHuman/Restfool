@@ -43,6 +43,7 @@ var defaultOptions = exports.defaultOptions = {
     return data;
   },
 
+
   /**
    * Filters all of the rows returned by the GET /index route.
    * This is the only event-type method that receives the
@@ -57,6 +58,7 @@ var defaultOptions = exports.defaultOptions = {
     return data.slice(startIndex, limitIndex);
   },
 
+
   /**
    * This method is called when a new record is being saved for
    * the first time.  This is the best place to add an auto-incrementing
@@ -70,6 +72,7 @@ var defaultOptions = exports.defaultOptions = {
     return data;
   },
 
+
   /**
    * This method is only called when a record is being updated and
    * receives the before and after record data.
@@ -82,6 +85,7 @@ var defaultOptions = exports.defaultOptions = {
     return _lodash2.default.merge(oldData, data);
   },
 
+
   /**
    * This method is always called when a record is being saved and is
    * triggered AFTER onCreate or onUpdate.
@@ -92,6 +96,7 @@ var defaultOptions = exports.defaultOptions = {
   onSave: function onSave(data) {
     return data;
   },
+
 
   /**
    * This method is called when a record is being deleted.  Returning
